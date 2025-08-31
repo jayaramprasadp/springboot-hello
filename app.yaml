@@ -1,5 +1,5 @@
 runtime: java21
-entrypoint: java -jar target\\springboot-hello-1.0.0.jar
+entrypoint: java -jar target/springboot-hello-1.0.0.jar
 
 
 
