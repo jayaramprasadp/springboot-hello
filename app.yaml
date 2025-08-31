@@ -1,3 +1,4 @@
-runtime: java23
+runtime: java21
 entrypoint: java -jar springboot-hello-1.0.0.jar
+
 
