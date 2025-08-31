@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JDK17'
+    }
+
+    environment {
+        PROJECT_ID = 'jp-project-11'
+        CREDENTIALS_ID = 'gcp-service-account'
+        APP_YAML = 'app.yaml'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/jayaramprasadp/springboot-hello.git'
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Authenticate GCP') {
+            steps {
+                withCredentials([file(credentialsId: "${CREDENTIALS_ID}", variable: 'GCP_KEY')]) {
+                    sh '''
+                        gcloud auth activate-service-account --key-file=$GCP_KEY
+                        gcloud config set project ${PROJECT_ID}
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to App Engine') {
+            steps {
+                sh '''
+                    gcloud app deploy ${APP_YAML} --quiet
+                '''
+            }
+        }
+    }
+}
