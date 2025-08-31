@@ -10,7 +10,7 @@ pipeline {
         CREDENTIALS_ID = 'gcp-service-account'
         APP_YAML = 'app.yaml'
         PATH = "C:\\Users\\jpatnala\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\bin;${env.PATH}"
-  }
+  
     }
 
     stages {
@@ -47,5 +47,6 @@ pipeline {
         }
     }
 }
+
 
 
