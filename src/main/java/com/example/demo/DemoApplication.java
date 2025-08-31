@@ -15,8 +15,9 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello World from Spring Boot on Google App Engine! v3";
+        return "Hello World from Spring Boot on Google App Engine! v4";
     }
 }
+
 
 
