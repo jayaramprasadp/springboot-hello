@@ -1,0 +1,2 @@
+runtime: java17
+entrypoint: java -jar springboot-hello-1.0.0.jar
